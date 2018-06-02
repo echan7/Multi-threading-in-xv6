@@ -1,0 +1,25 @@
+# push %ebp
+# move ebp to esp
+#get args register
+#get fn reister
+
+#push $4096
+#call malloc
+
+# check if malloc is null
+# if null, exit
+
+#otherwise, mov stack into register
+
+#push %eax
+#call clone
+
+#check return
+#if zero, set up stack
+#call fn (call *%fn)
+#call exit
+
+#else
+#check to see if -1
+#if it is, free stack
+#ret

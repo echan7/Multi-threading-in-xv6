@@ -1,0 +1,58 @@
+#include "types.h"
+#include "stat.h"
+#include "user.h"
+
+ 
+struct spinlock lk;
+int status = 0;
+
+void f(void *arg)
+{ 
+  //struct spinlock lk;
+  printf(1, "starting function fuck\n");
+  //spin_lock(&lk);
+  //status = *((int*)arg);
+
+  int i;
+  for(i = 0; i < 2; i++)
+  {
+      int tmp = status;
+      //int j;
+      sleep(1);
+      //for(j=0; j<50; j++);
+      status = tmp + 1;
+  }
+
+  //printf(1,"Enter a new thread: %d\n", getpid());
+  //printf(2, "int status in test.c -> %d\n", status);
+  //spin_unlock(&lk);
+  printf(1, "exiting fuk\n");
+  //spin_unlock(lk);
+  exit();
+}
+ 
+int main()
+{
+  spin_init(&lk);
+  int i; 
+  for(i = 0; i < 2; i++)
+  {
+      if(thread_create(&f,(void*)i) < 0)
+           printf(2, "clone failed");
+  }
+
+  for(i = 0; i < 3; i++)
+  {
+      thread_join();
+  }
+
+  //thread_create(&f,arg);
+  //thread_join();
+  //thread_create(&f,arg);
+  //thread_join();
+ 
+  printf(1, "status = %d\n", status);
+
+
+  exit();
+}

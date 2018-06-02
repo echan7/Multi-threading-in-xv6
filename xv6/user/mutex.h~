@@ -1,0 +1,26 @@
+
+#ifndef MUTEX_H
+#define MUTEX_H
+
+struct mutex {
+
+  uint locked;
+  uint guard;  
+  uint head; 
+  struct threadPid* listHead; 
+ 
+};
+
+struct threadPid {
+  int pid;
+  struct threadPid * next;
+};
+
+void mutex_init(struct mutex* mtx);
+void mutex_lock(struct mutex* mtx);
+void mutex_unlock(struct mutex* mtx);
+void push(struct mutex* mtx);
+int pop(struct mutex* mtx);
+
+
+#endif

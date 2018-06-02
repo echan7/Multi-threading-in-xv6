@@ -1,0 +1,52 @@
+      avent called park yet\n");
+                   ^
+kernel/proc.c: In function sched:
+kernel/proc.c:478:3: error: expected =, ,, ;, asm or __attribute__ before if
+   if(!holding(&ptable.lock))
+   ^
+kernel/proc.c:486:3: error: intena undeclared (first use in this function)
+   intena = cpu->intena;
+   ^
+kernel/proc.c:486:3: note: each undeclared identifier is reported only once for each function it appears in
+cc1: all warnings being treated as errors
+make: *** [kernel/proc.o] Error 1
+[jieo@emperor-01] (2)$ make qemu-nox
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+                -M -MG kernel/proc.c -MF kernel/proc.d -MT kernel/proc.d -MT kernel/proc.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o kernel/proc.o kernel/proc.c
+kernel/proc.c: In function park:
+kernel/proc.c:412:6: error: unknown type name avent
+      avent called park yet\n");
+      ^
+kernel/proc.c:412:19: error: expected =, ,, ;, asm or __attribute__ before park
+      avent called park yet\n");
+                   ^
+kernel/proc.c:412:19: error: stray \ in program
+kernel/proc.c:412:29: error: missing terminating " character [-Werror]
+      avent called park yet\n");
+                             ^
+kernel/proc.c:412:19: error: missing terminating " character
+      avent called park yet\n");
+                   ^
+kernel/proc.c: In function sched:
+kernel/proc.c:477:3: error: expected =, ,, ;, asm or __attribute__ before if
+   if(!holding(&ptable.lock))
+   ^
+kernel/proc.c:485:3: error: intena undeclared (first use in this function)
+   intena = cpu->intena;
+   ^
+kernel/proc.c:485:3: note: each undeclared identifier is reported only once for each function it appears in
+cc1: all warnings being treated as errors
+make: *** [kernel/proc.o] Error 1
+[jieo@emperor-01] (3)$ make qemu-nox
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o kernel/proc.o kernel/proc.c
+kernel/proc.c: In function sched:
+kernel/proc.c:476:3: error: expected =, ,, ;, asm or __attribute__ before if
+   if(!holding(&ptable.lock))
+   ^
+kernel/proc.c:484:3: error: intena undeclared (first use in this function)
+   intena = cpu->intena;
+   ^
+kernel/proc.c:484:3: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [kernel/proc.o] Error 1
+[jieo@emperor-01] (4)$

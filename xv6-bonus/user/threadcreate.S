@@ -1,0 +1,32 @@
+.globl thread_create 
+thread_create:
+    pushl %ebp;
+    movl %esp, %ebp;
+    movl 0x8(%ebp), %ebx; //function
+    movl 0xC(%ebp), %ecx; //args	
+    pushl $4096;
+    call malloc;
+    test %eax, %eax;
+    jz fail_exit;
+    movl %eax, %edx //move stack to %edx
+    push %eax;
+    call clone;
+    test %eax, 0;
+    jl fail_exit;
+    jz return; 
+
+    //you still need to set up your stack
+    leal 4096(%edx), %ebp
+    movl %ebp, %esp
+    pushl %ecx;
+    call *%ebx;
+    call exit;
+    leave;
+    ret;
+
+fail_exit:
+    call exit;
+
+return:
+    ret;;     
+    
